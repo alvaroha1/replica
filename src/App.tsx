@@ -5,30 +5,31 @@ import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import InputField from "./Components/InputField";
 import Sidebar from "./Components/Sidebar";
+import { addOwner } from "./Helpers/addOwner";
 import { Card } from "./Styles/Card";
 import { Main } from "./Styles/Main";
-
-interface Item {
-  name: string;
-}
+import { Package } from "./Types/Package";
 
 export default function App() {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<Package[]>([]);
   const [error, setError] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [pageToDisplay, setPageToDisplay] = useState<number>(1);
+  const itemsPerPage = 5;
 
   const fetchData = async () => {
     try {
       const data = await fetch(
-        `https://libraries.io/api/bower-search?q=${searchKeyword}&page=${pageToDisplay}&per_page=${5}`
+        `https://libraries.io/api/bower-search?q=${searchKeyword}&page=${pageToDisplay}&per_page=${itemsPerPage}`
       );
       const json = await data.json();
-      console.log(json);
-      setItems(json);
+      const newItems = addOwner(json) 
+      setItems(newItems);
+      console.log(items)
     } catch (error) {
       setError(true);
+      setMessage("Error fetching data")
       console.error(error);
     }
   };
