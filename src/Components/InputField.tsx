@@ -24,7 +24,6 @@ export default function InputField({
     <span>
       <Input
         onKeyDown={(e) => handleKeyboardEvent(e)}
-        data-cy="input"
         data-testid={dataTestId}
         type="text"
         placeholder={placeholder}

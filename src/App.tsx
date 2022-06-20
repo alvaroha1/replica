@@ -7,7 +7,7 @@ import InputField from "./Components/InputField";
 import Sidebar from "./Components/Sidebar";
 import { addOwner } from "./Helpers/addOwner";
 import { Card } from "./Styles/Card";
-import { Main } from "./Styles/Main";
+import { Main, Container, Flex, Column } from "./Styles/App";
 import { Package } from "./Types/Package";
 
 export default function App() {
@@ -24,12 +24,12 @@ export default function App() {
         `https://libraries.io/api/bower-search?q=${searchKeyword}&page=${pageToDisplay}&per_page=${itemsPerPage}`
       );
       const json = await data.json();
-      const newItems = addOwner(json) 
+      const newItems = addOwner(json);
       setItems(newItems);
-      console.log(items)
+      console.log(items);
     } catch (error) {
       setError(true);
-      setMessage("Error fetching data")
+      setMessage("Error fetching data");
       console.error(error);
     }
   };
@@ -44,30 +44,35 @@ export default function App() {
 
   useEffect(() => {
     if (searchKeyword !== "") fetchData();
-  }, [searchKeyword]);
+  }, []);
   return (
-    <Main>
-      <div>
-        <Header />
+    <Container>
+      <Header />
+
+      <Main>
         <div>
-          <Card>
-            <InputField
-              placeholder="Type here ..."
-              handleInput={handleInput}
-              onKeyDown={handleButton}
-            />
-            <Button
-              name="Search"
-              onClick={handleButton}
-              disabled={searchKeyword === ""}
-              dataTestId="search"
-            />
-          </Card>
-          <ContentList />
+          <Flex>
+            <Sidebar />
+            <Column>
+              <Card>
+                <InputField
+                  placeholder="Type here ..."
+                  handleInput={handleInput}
+                  onKeyDown={handleButton}
+                />
+                <Button
+                  name="Search"
+                  onClick={handleButton}
+                  disabled={searchKeyword === ""}
+                  dataTestId="search"
+                />
+              </Card>
+              <ContentList items={items} />
+            </Column>
+          </Flex>
         </div>
-        <Footer />
-      </div>
-      <Sidebar />
-    </Main>
+      </Main>
+      <Footer />
+    </Container>
   );
 }

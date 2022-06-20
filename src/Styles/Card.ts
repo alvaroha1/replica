@@ -2,18 +2,19 @@ import styled from 'styled-components'
 
 export const Card = styled.div`
   padding: 20px;
-  background: #fff;
-  border-radius: 8px;
   overflow: hidden;
   min-width: 300px;
-  box-shadow: 0px 2px 4px rgba(0,0,0,.1);
-  transition: box-shadow .15s ease;
-  margin: 14px 0px;
+  border: 1px solid #eaeaea;
+  background-color: #fafafa;
+  border-radius: 5px;
+  margin: 16px 0px;
   display: flex;
-`
-
-export const Image = styled.img`
-  height: 160px;
+  justify-content: space-between;
+  width: 100vh;
+  @media only screen and (max-width: 600px) {
+    padding: 10px;
+    width: auto;
+  }
 `
 
 export const TextBox = styled.div`

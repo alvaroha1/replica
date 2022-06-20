@@ -12,7 +12,7 @@ export const ButtonStyled = styled.button`
     color: #eaeaea;
 
     &:disabled{
-      background-color:  #fafafa;
+      background-color: #f2f2f2;
       color: #c6c1be;
       border-color: #eaeaea;
       cursor: not-allowed;
