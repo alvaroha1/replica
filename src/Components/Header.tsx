@@ -9,7 +9,7 @@ export default function Header() {
     <Main>
       <ListBox>
         <List>
-          {elements.map(element => <ListElement>{element}</ListElement>)}
+          {elements.map(element => <ListElement key={element}>{element}</ListElement>)}
         </List>
       </ListBox>
       <Headers>

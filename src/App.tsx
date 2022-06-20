@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Button from "./Components/Button";
-import ContentList from "./Components/ContentList";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import InputField from "./Components/InputField";
@@ -9,24 +8,25 @@ import { addOwner } from "./Helpers/addOwner";
 import { Card } from "./Styles/Card";
 import { Main, Container, Flex, Column } from "./Styles/App";
 import { Package } from "./Types/Package";
+import { Style } from "./Types/Style";
+import ContentList from "./Components/ContentList";
+import Message from "./Components/Message";
 
 export default function App() {
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [items, setItems] = useState<Package[]>([]);
   const [error, setError] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
-  const [pageToDisplay, setPageToDisplay] = useState<number>(1);
   const itemsPerPage = 5;
 
   const fetchData = async () => {
     try {
       const data = await fetch(
-        `https://libraries.io/api/bower-search?q=${searchKeyword}&page=${pageToDisplay}&per_page=${itemsPerPage}`
+        `https://libraries.io/api/bower-search?q=${searchKeyword}&per_page=${itemsPerPage}`
       );
       const json = await data.json();
       const newItems = addOwner(json);
       setItems(newItems);
-      console.log(items);
     } catch (error) {
       setError(true);
       setMessage("Error fetching data");
@@ -40,6 +40,10 @@ export default function App() {
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
+  };
+
+  const handleSort = (e: React.MouseEvent) => {
+    console.log("sort")
   };
 
   useEffect(() => {
@@ -67,7 +71,10 @@ export default function App() {
                   dataTestId="search"
                 />
               </Card>
-              <ContentList items={items} />
+              <ContentList items={items} method={handleSort} />
+                {error ? (
+                  <Message style={Style.Error} message={message} />
+                ) : null}
             </Column>
           </Flex>
         </div>

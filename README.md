@@ -1,46 +1,81 @@
-# Getting Started with Create React App
+## Task - Dates | Frontend-Exercise
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Coding challenge
+Please write a responsive website, which mimics the behaviour of
+https://bower.io/search/. The application should be programmed using
+TypeScript and React.
+**Layout**
+The site should have a header section, a left sidebar, a footer and a
+content area. The content area should show a list of modules with their
+name, owner & stars.
+You can implement your own design or copy the style from the original
+Bower page. You can also use the UI library of your choice or implement
+your own React components. As you prefer. Placeholders can be used for
+the content.
+**Pagination & Sorting**
+The list of modules should be [sortable by
+stars](https://libraries.io/api#project-search). It is important that the
+list is paged, which means that only 5 items per page will be shown. It
+should also be possible to search for a specific module.
+**API**
+You can use the Libraries.io API to query for modules (Example:
+https://libraries.io/api/bower-search?q=jquery). It will return you all
+the data which you need to display.
+**Assessment**
+When writing your code, please make sure that your project is structured
+and can be executed with `yarn install` & `yarn start`.
+When running `yarn start`, a browser should show up and display your
+developed site. If we run `yarn test`, we want to see unit tests running
+for the business logic of your code. Your project must be cross-platform
+compatible (running on Linux, Windows & macOS).
 
-## Available Scripts
+[Alvaro Hernandez](mailto:alvarohernandezassens@gmail.com)
 
-In the project directory, you can run:
+## Proposed Solution
 
-### `npm start`
+- Setup client with create-react-app
+- Create basic component structure and design state workflow
+- Setup Jest and add tests
+- Implement state system with props
+- Implement styes with styled-components
+- Refine logic and fix bugs
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Screenshots
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![Main](assets/Screenshot-1.png)
 
-### `npm test`
+## Assumptions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-
 
-### `npm run build`
+## Libraries / Tools Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React.js
+- Create React App for project setup
+- Typescript
+- Styled Components
+- React Icons
+- Jest
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Frontend Setup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To install the dependencies run in the client folder:
 
-### `npm run eject`
+`npm install`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+And to run the app, also in the client folder:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`npm start`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Running the tests
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+You can run the unit tests using:
 
-## Learn More
+`npm test`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Future Work
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Complete unit testing with Jest and react-testing-library until coverage of at least 90%.
+2. Replace react-icons with plain SVGs for better performance.
+3. Replace styled-components with plain CSS for better caching.
+4. Implement Lazy Loading.

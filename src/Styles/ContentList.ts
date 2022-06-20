@@ -16,6 +16,11 @@ export const Header = styled.span`
   font-weight: 700;
 `;
 
+export const HeaderSort = styled.span`
+  font-weight: 700;
+  cursor: pointer;
+`;
+
 
 
 

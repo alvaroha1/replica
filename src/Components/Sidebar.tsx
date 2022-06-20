@@ -14,7 +14,7 @@ export default function Sidebar() {
     <Main>
       <List>
         {elements.map((element) => (
-          <ListElement>{element}</ListElement>
+          <ListElement key={element}>{element}</ListElement>
         ))}
       </List>
     </Main>

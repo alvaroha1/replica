@@ -1,13 +1,14 @@
 import { Package } from "../Types/Package";
 import Item from "./Item";
 import { Card } from "../Styles/Card";
-import { GridWrapper, Header } from "../Styles/ContentList";
+import { GridWrapper, Header, HeaderSort } from "../Styles/ContentList";
 
 interface ContentListProps {
   items: Package[];
+  method: React.MouseEventHandler<HTMLSpanElement>;
 }
 
-export default function ContentList({ items }: ContentListProps) {
+export default function ContentList({ items, method }: ContentListProps) {
   return (
     <div>
       {items.length > 0 ? (
@@ -15,7 +16,7 @@ export default function ContentList({ items }: ContentListProps) {
           <GridWrapper>
             <Header>Name</Header>
             <Header>Owner</Header>
-            <Header>Stars</Header>
+            <HeaderSort onClick={method}>Stars</HeaderSort>
           </GridWrapper>
         </Card>
       ) : null}
