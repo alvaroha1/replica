@@ -49,7 +49,7 @@ compatible (running on Linux, Windows & macOS).
 - Implement styes with styled-components
 - Refine logic and fix bugs
 
-### [Click here to see the Live Demo]([https://replica.vercel.app/])
+### [Click here to see the Live Demo](https://replica.vercel.app/)
 
 ## Screenshots
 
