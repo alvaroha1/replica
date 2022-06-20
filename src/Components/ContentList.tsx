@@ -1,7 +1,7 @@
-import { Package } from "../Types/Package";
-import Item from "./Item";
 import { Card } from "../Styles/Card";
 import { GridWrapper, Header, HeaderSort } from "../Styles/ContentList";
+import { Package } from "../Types/Package";
+import Item from "./Item";
 
 interface ContentListProps {
   items: Package[];
@@ -16,7 +16,7 @@ export default function ContentList({ items, method }: ContentListProps) {
           <GridWrapper>
             <Header>Name</Header>
             <Header>Owner</Header>
-            <HeaderSort onClick={method}>Stars</HeaderSort>
+            <HeaderSort∫ onClick={method}>Stars</HeaderSort∫>
           </GridWrapper>
         </Card>
       ) : null}
