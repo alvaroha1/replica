@@ -49,7 +49,7 @@ export default function App() {
   };
 
   const handleSort = (sortItem: string) => {
-    const sortByStarsURL = searchURL + `&sort=${sortItem}&page=${pageToDisplay}&per_page=${itemsPerPage}`;
+    const sortByStarsURL = searchURL + `&sort=${sortItem}`;
     fetchData(sortByStarsURL);
   };
 
