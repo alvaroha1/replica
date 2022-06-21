@@ -9,16 +9,28 @@ interface PaginationArrowProps {
   disabled?: boolean;
 }
 
-export default function PaginationArrow({ direction, method, disabled }: PaginationArrowProps) {
+export default function PaginationArrow({
+  direction,
+  method,
+  disabled,
+}: PaginationArrowProps) {
   if (direction === ArrowType.Left) {
     return (
-      <LeftArrow onClick={method} disabled={disabled}>
+      <LeftArrow
+        data-testid="btn-minus-one"
+        onClick={method}
+        disabled={disabled}
+      >
         <MdArrowBackIos />
       </LeftArrow>
     );
   } else {
     return (
-      <RightArrow onClick={method} disabled={disabled}>
+      <RightArrow
+        data-testid="btn-plus-one"
+        onClick={method}
+        disabled={disabled}
+      >
         <MdArrowForwardIos />
       </RightArrow>
     );
