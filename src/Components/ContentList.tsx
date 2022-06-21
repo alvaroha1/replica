@@ -16,7 +16,7 @@ export default function ContentList({ items, method }: ContentListProps) {
           <GridWrapper>
             <Header>Name</Header>
             <Header>Owner</Header>
-            <HeaderSort∫ onClick={method}>Stars</HeaderSort∫>
+            <HeaderSort onClick={method}>Stars</HeaderSort>
           </GridWrapper>
         </Card>
       ) : null}

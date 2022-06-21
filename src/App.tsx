@@ -18,12 +18,13 @@ export default function App() {
   const [error, setError] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const itemsPerPage = 5;
+  const searchURL = `https://libraries.io/api/search?q=${searchKeyword}&api_key=${process.env.REACT_APP_LIBRARIES_KEY}&per_page=${itemsPerPage}`;
+  const sortByStarsURL = searchURL + `&sort=stars`;
+  const allResultsURL = `https://libraries.io/api/search?q=${searchKeyword}&api_key=${process.env.REACT_APP_LIBRARIES_KEY}&per_page=${itemsPerPage}`;
 
-  const fetchData = async () => {
+  const fetchData = async (url: string) => {
     try {
-      const data = await fetch(
-        `https://libraries.io/api/bower-search?q=${searchKeyword}&per_page=${itemsPerPage}`
-      );
+      const data = await fetch(url);
       const json = await data.json();
       const newItems = addOwner(json);
       setItems(newItems);
@@ -31,11 +32,12 @@ export default function App() {
       setError(true);
       setMessage("Error fetching data");
       console.error(error);
+      setTimeout(() => setError(false), 5000);
     }
   };
 
   const handleButton = () => {
-    fetchData();
+    fetchData(searchURL);
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,11 +45,11 @@ export default function App() {
   };
 
   const handleSort = (e: React.MouseEvent) => {
-    console.log("sort")
+    fetchData(sortByStarsURL);
   };
 
   useEffect(() => {
-    if (searchKeyword !== "") fetchData();
+    if (searchKeyword !== "") fetchData(searchURL);
   }, []);
   return (
     <Container>
@@ -72,9 +74,7 @@ export default function App() {
                 />
               </Card>
               <ContentList items={items} method={handleSort} />
-                {error ? (
-                  <Message style={Style.Error} message={message} />
-                ) : null}
+              {error ? <Message style={Style.Error} message={message} /> : null}
             </Column>
           </Flex>
         </div>
