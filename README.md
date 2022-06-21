@@ -57,7 +57,7 @@ compatible (running on Linux, Windows & macOS).
 
 ## Assumptions
 
--
+- Since I could not find a way to retrieve all possible results from the api (Bower.io returns 30 per search), I used the query parameter &per_page=100 to if possible fetch 100 items per search.
 
 ## Libraries / Tools Used
 

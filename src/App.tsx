@@ -23,7 +23,7 @@ export default function App() {
   const [numberOfPages, setNumberOfPages] = useState<number>(1);
   const itemsPerPage = 5;
   const searchURL = `https://libraries.io/api/search?q=${searchKeyword}&api_key=${process.env.REACT_APP_LIBRARIES_KEY}&page=${pageToDisplay}&per_page=${itemsPerPage}`;
-  const searchAllURL = `https://libraries.io/api/search?q=${searchKeyword}&api_key=${process.env.REACT_APP_LIBRARIES_KEY}`;
+  const searchAllURL = `https://libraries.io/api/search?q=${searchKeyword}&api_key=${process.env.REACT_APP_LIBRARIES_KEY}&per_page=100`;
   const fetchData = async (url: string) => {
     try {
       const data = await fetch(url);
@@ -56,6 +56,7 @@ export default function App() {
   const handlePageToDisplay = (index: number) => {
     const paginationURL = `https://libraries.io/api/search?q=${searchKeyword}&api_key=${process.env.REACT_APP_LIBRARIES_KEY}&page=${index}&per_page=${itemsPerPage}`;
     setPageToDisplay(index);
+    console.log("display page", pageToDisplay)
     fetchData(paginationURL);
   };
 
@@ -64,7 +65,7 @@ export default function App() {
       const data = await fetch(url);
       const json = await data.json();
       const pages = calculateNumberOfPages(json.length, itemsPerPage);
-      console.log("number of pages", pages)
+      console.log("number of pages", pages, json.length)
       setNumberOfPages(pages);
     } catch (error) {
       console.error(error);
