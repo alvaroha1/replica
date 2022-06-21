@@ -7,7 +7,7 @@ export const Input = styled.input`
   padding: 0px 8px;
   width: 200px;
 
-  &:active, &:focus {
+  &:active, &:focus &:focus-visible{
     color: #0e1012;
     border-color: #0e1012;
   }

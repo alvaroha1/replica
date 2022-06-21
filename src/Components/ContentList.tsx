@@ -5,10 +5,10 @@ import Item from "./Item";
 
 interface ContentListProps {
   items: Package[];
-  method: React.MouseEventHandler<HTMLSpanElement>;
+  handleSort: (sortItem: string) => void;
 }
 
-export default function ContentList({ items, method }: ContentListProps) {
+export default function ContentList({ items, handleSort }: ContentListProps) {
   return (
     <div>
       {items.length > 0 ? (
@@ -16,7 +16,7 @@ export default function ContentList({ items, method }: ContentListProps) {
           <GridWrapper>
             <Header>Name</Header>
             <Header>Owner</Header>
-            <HeaderSort onClick={method}>Stars</HeaderSort>
+            <HeaderSort onClick={()=>handleSort("stars")}>Stars</HeaderSort>
           </GridWrapper>
         </Card>
       ) : null}

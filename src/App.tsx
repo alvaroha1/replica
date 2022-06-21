@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "./Components/Button";
 import ContentList from "./Components/ContentList";
 import Footer from "./Components/Footer";
@@ -6,7 +6,9 @@ import Header from "./Components/Header";
 import InputField from "./Components/InputField";
 import Message from "./Components/Message";
 import Sidebar from "./Components/Sidebar";
+import Pagination from "./Components/Pagination";
 import { addOwner } from "./Helpers/addOwner";
+import { calculateNumberOfPages } from "./Helpers/calculateNumberOfPages";
 import { Column, Container, Flex, Main } from "./Styles/App";
 import { Card } from "./Styles/Card";
 import { Package } from "./Types/Package";
@@ -17,11 +19,11 @@ export default function App() {
   const [items, setItems] = useState<Package[]>([]);
   const [error, setError] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
+  const [pageToDisplay, setPageToDisplay] = useState<number>(1);
+  const [numberOfPages, setNumberOfPages] = useState<number>(1);
   const itemsPerPage = 5;
-  const searchURL = `https://libraries.io/api/search?q=${searchKeyword}&api_key=${process.env.REACT_APP_LIBRARIES_KEY}&per_page=${itemsPerPage}`;
-  const sortByStarsURL = searchURL + `&sort=stars`;
-  const allResultsURL = `https://libraries.io/api/search?q=${searchKeyword}&api_key=${process.env.REACT_APP_LIBRARIES_KEY}&per_page=${itemsPerPage}`;
-
+  const searchURL = `https://libraries.io/api/search?q=${searchKeyword}&api_key=${process.env.REACT_APP_LIBRARIES_KEY}&page=${pageToDisplay}&per_page=${itemsPerPage}`;
+  const searchAllURL = `https://libraries.io/api/search?q=${searchKeyword}&api_key=${process.env.REACT_APP_LIBRARIES_KEY}`;
   const fetchData = async (url: string) => {
     try {
       const data = await fetch(url);
@@ -37,24 +39,40 @@ export default function App() {
   };
 
   const handleButton = () => {
-    fetchData(searchURL);
+    setPageToDisplay(1);
+    fetchData(searchURL)
+    fetchAll(searchAllURL);
   };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
   };
 
-  const handleSort = (e: React.MouseEvent) => {
+  const handleSort = (sortItem: string) => {
+    const sortByStarsURL = searchURL + `&sort=${sortItem}&page=${pageToDisplay}&per_page=${itemsPerPage}`;
     fetchData(sortByStarsURL);
   };
 
-  useEffect(() => {
-    if (searchKeyword !== "") fetchData(searchURL);
-  }, []);
+  const handlePageToDisplay = (index: number) => {
+    const paginationURL = `https://libraries.io/api/search?q=${searchKeyword}&api_key=${process.env.REACT_APP_LIBRARIES_KEY}&page=${index}&per_page=${itemsPerPage}`;
+    setPageToDisplay(index);
+    fetchData(paginationURL);
+  };
+
+  const fetchAll = async(url: string) => {
+    try {
+      const data = await fetch(url);
+      const json = await data.json();
+      const pages = calculateNumberOfPages(json.length, itemsPerPage);
+      setNumberOfPages(pages);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <Container>
       <Header />
-
       <Main>
         <div>
           <Flex>
@@ -73,8 +91,9 @@ export default function App() {
                   dataTestId="search"
                 />
               </Card>
-              <ContentList items={items} method={handleSort} />
+              <ContentList items={items} handleSort={handleSort} />
               {error ? <Message style={Style.Error} message={message} /> : null}
+              {items.length > 0 ? <Pagination numberOfPages={numberOfPages} handlePageToDisplay={handlePageToDisplay} pageToDisplay={pageToDisplay} /> : null}
             </Column>
           </Flex>
         </div>
