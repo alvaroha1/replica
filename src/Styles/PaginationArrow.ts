@@ -4,22 +4,26 @@ interface ArrowProps {
   disabled?: boolean;
 }
 
-export const LeftArrow = styled.div<ArrowProps>`
+export const LeftArrow = styled.button<ArrowProps>`
   display: flex;
   justify-content: center;
+  border: none;
+  background-color: transparent;
   align-items: center;
   padding: 8px;
-  cursor: pointer;
   pointer-events: ${props => props.disabled ? "disabled" : "auto"};
   opacity: ${props => props.disabled ? "0.4" : "1"};
+  cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
 `;
 
-export const RightArrow = styled.div<ArrowProps>`
+export const RightArrow = styled.button<ArrowProps>`
+  border: none;
+  background-color: transparent;
   padding: 8px;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: ${props => props.disabled ? "disabled" : "auto"};
   opacity: ${props => props.disabled ? "0.4" : "1"};
+  cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
 `;

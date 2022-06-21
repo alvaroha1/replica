@@ -5,7 +5,7 @@ import { ArrowType } from "../Types/ArrowType";
 
 interface PaginationArrowProps {
   direction: string;
-  method: React.MouseEventHandler<HTMLDivElement>;
+  method: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
 }
 

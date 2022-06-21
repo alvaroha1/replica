@@ -64,6 +64,7 @@ export default function App() {
       const data = await fetch(url);
       const json = await data.json();
       const pages = calculateNumberOfPages(json.length, itemsPerPage);
+      console.log("number of pages", pages)
       setNumberOfPages(pages);
     } catch (error) {
       console.error(error);
