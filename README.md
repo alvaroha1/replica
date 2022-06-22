@@ -73,17 +73,21 @@ compatible (running on Linux, Windows & macOS).
 
 To install the dependencies run in the client folder:
 
-`npm install`
+`npm install` or `yarn install`
+
+Get a api key from libraries.io in `https://libraries.io/`
+
+Place the API key in a .env file as REACT_APP_LIBRARIES_KEY, see `.env.example` for reference.
 
 And to run the app, also in the client folder:
 
-`npm start`
+`npm start` or `yarn start`
 
 ## Running the tests
 
 You can run the unit tests using:
 
-`npm test`
+`npm test` or `yarn test`
 
 ## Future Work
 

@@ -16,7 +16,6 @@ export default function Item({
   numberOfPages,
 }: PaginationProps) {
   const arrayPages = [];
-  console.log(numberOfPages);
   if (numberOfPages > 5) {
     for (let i = 0; i < numberOfPages; i++) {
       arrayPages.push(i);
