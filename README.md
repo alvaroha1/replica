@@ -54,6 +54,7 @@ compatible (running on Linux, Windows & macOS).
 ## Screenshots
 
 ![Main](assets/Screenshot-1.png)
+![Mobile](assets/Screenshot-2.png)
 
 ## Assumptions
 
