@@ -14,6 +14,10 @@ export const Number = styled.button<ArrowProps>`
   pointer-events: ${(props) => (props.selected ? "selected" : "auto")};
   opacity: ${(props) => (props.selected ? "0.4" : "1")};
   cursor: ${(props) => (props.selected ? "not-allowed" : "pointer")};
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const HideDivMobile = styled.div`
