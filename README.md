@@ -71,7 +71,7 @@ compatible (running on Linux, Windows & macOS).
 
 ## Frontend Setup
 
-To install the dependencies run in the client folder:
+To install the dependencies run in the folder:
 
 `npm install` or `yarn install`
 
@@ -79,7 +79,7 @@ Get a api key from libraries.io in `https://libraries.io/`
 
 Place the API key in a .env file as REACT_APP_LIBRARIES_KEY, see `.env.example` for reference.
 
-And to run the app, also in the client folder:
+And to run the app:
 
 `npm start` or `yarn start`
 
